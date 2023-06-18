@@ -4,8 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hogwats Jobs</title>
+     <!-- favicon -->
+     <link rel="shortcut icon" href="./assets/icons/sorting-hat-white.png" type="image/x-icon">
+      <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"/>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Benne&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- my styles -->
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <script src="js/main.js"></script>
+    <!-- header -->
+    <header class="flex justify-evenly items-center py-2">
+        <figure>
+            <img class="rounded-full w-12 md:w-2/5" src="./assets/img/hogwarts-jobs.png" alt="Hogwats Jobs">
+        </figure>
+        <!-- nav-bar -->
+        <nav>
+            <ul class="flex">
+                <li class="flex items-center mr-8">
+                    <a href="#">Home</a>
+                    <img class="w-8" src="./assets/icons/thunder.png" alt="thunder icon">
+                </li>
+                <li class="flex items-center">
+                    <a href="#">Create Job at Hogwarts</a>
+                    <img class="w-8" src="./assets/icons/sorting-hat.png" alt="sorting hat icon">
+                </li>
+            </ul>
+        </nav>
+        <h1 class="pb-2 border-b-4 md:hidden">Hogwarts Jobs</h1>
+        <!-- burger menu -->
+        <figure class="md:hidden">
+            <i class="fa-solid fa-bars"></i>
+        </figure>
+    </header>
+
+
+
+
+
+
+
+
+
+
+    <!-- footer -->
+    <footer class="text-center">
+        <!-- social networks -->
+        <section class="flex justify-around">
+            <a href="https://github.com/veronicadelmar" target="_blank">
+                <figure>
+                    <i class="fa-brands fa-github-alt circle" aria-hidden="true"></i>
+                </figure>
+            </a>
+            <a href="https://www.linkedin.com/in/veronicagui%C3%B1an/" target="_blank">
+                <figure>
+                    <i class="fa-brands fa-linkedin-in circle" aria-hidden="true"></i>
+                </figure>
+            </a>
+            <a  href="https://www.instagram.com/unachamaqueprograma/" target="_blank">
+                <figure>
+                    <i class="fa-brands fa-instagram circle" aria-hidden="true"></i>
+                </figure>
+            </a>
+        </section>
+        <h6>Realizado con <i class="fa-solid fa-wand-sparkles"></i> por Verónica G. Potter</h6>
+    </footer>
+    <script src="./js/main.js"></script>
 </body>
 </html>
