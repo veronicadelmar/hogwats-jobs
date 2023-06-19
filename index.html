@@ -9,13 +9,13 @@
       <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous"
     referrerpolicy="no-referrer"/>
-    <!-- google font -->
+    <!-- google-font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Benne&display=swap" rel="stylesheet">
-    <!-- Tailwind -->
+    <!-- tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- my styles -->
+    <!-- my-styles -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -38,24 +38,57 @@
             </ul>
         </nav>
         <h1 class="pb-2 border-b-4 md:hidden">Hogwarts Jobs</h1>
-        <!-- burger menu -->
+        <!-- burger-menu -->
         <figure class="md:hidden">
             <i class="fa-solid fa-bars"></i>
         </figure>
     </header>
+    <main>
+        <!-- banner-filter  -->
+        <section id="banner-filter">
+            <form>
+                <select name="filter-location" id="">
+                    <option value="location">Location</option>
+                </select>
+                <select name="filter-seniotity" id="">
+                    <option value="seniority">Seniority</option>
+                </select>
+                <select name="filter-category" id="">
+                    <option value="category">Category</option>
+                </select>
+                <button>Search</button>
+                <button type="reset">Clear</button>
+            </form>
+        </section>
+        <!-- slogan -->
+        <section>
+            <h2>Find your work spell: the magic of employment awaits you at Hogwarts
 
+                Discover your career spell: the magic of employment awaits you at Hogwarts
+                
+                Unlock the power of talent: connect with exceptional wizards and witches at Hogwarts.
+            </h2>
+        </section>
+        <!-- card-jobs -->
+        <section>
 
-
-
-
-
-
-
-
-
+        </section>
+        <!-- form -->
+        <form>
+            <label>Job title</label>
+            <input type="text" placeholder="Job title">
+            <label>Description</label>
+            <input type="text" placeholder="Description">
+            <label>Tags</label>
+            <input type="text" placeholder="Location">
+            <input type="text" placeholder="Seniority">
+            <input type="text" placeholder="Category">
+            <button>Submit</button>
+        </form>
+    </main>
     <!-- footer -->
     <footer class="text-center">
-        <!-- social networks -->
+        <!-- social-networks -->
         <section class="flex justify-around">
             <a href="https://github.com/veronicadelmar" target="_blank">
                 <figure>
