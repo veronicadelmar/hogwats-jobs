@@ -1,5 +1,4 @@
-/* selectors, hide and show elements, clean
-*/
+/* selectors, hide and show elements, clean container */
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
 
@@ -16,7 +15,6 @@ const showElements = (selectors) => {
 }
 
 const cleanContainer = (selector) => $(selector).innerHTML = ''
-
 
 /* get jobs */
 const getJobs = (jobId = "") =>{
@@ -55,7 +53,6 @@ const renderJobs = (jobs) => {
             cleanContainer("#cards")
             const jobId = btn.getAttribute("data-id")
             getJobs(jobId)
-            console.log(jobId)
         })
     }
 }
