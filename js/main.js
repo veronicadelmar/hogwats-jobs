@@ -76,6 +76,13 @@ const renderJobDetails = (job) => {
     }
 }
 
+$(".btn-burger").addEventListener("click", () => {
+    if (!$(".btn-burger").classList.contains("hidden")) {
+        $("nav").classList.toggle("hidden")
+        $("header").classList.toggle("mb-28")
+        $("main").classList.toggle("mt-20")
+    }
+})
 
 // $(".btn-show-datails").addEventListener("click", () => {
 //     const jobId = $(".btn-show-datails").getAttribute("data-id")
