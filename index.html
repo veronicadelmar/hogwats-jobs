@@ -15,10 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Benne&display=swap" rel="stylesheet">
     <!-- tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- my-styles -->
-    <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
+<body class="font-['Benne']">
     <!-- header -->
     <header class="flex justify-evenly items-center py-2">
         <figure>
@@ -45,7 +43,7 @@
     </header>
     <main>
         <!-- banner-filter  -->
-        <section id="banner-filter">
+        <section id="banner-filter" class="mt-28 p-5 bg-black md:mt-5">
             <form>
                 <select name="filter-location" id="">
                     <option value="location">Location</option>
@@ -56,12 +54,12 @@
                 <select name="filter-category" id="">
                     <option value="category">Category</option>
                 </select>
-                <button>Search</button>
-                <button type="reset">Clear</button>
+                <button class="text-white p-2 bg-yellow-700">Search</button>
+                <button class="text-white p-2 bg-blue-700" type="reset">Clear</button>
             </form>
         </section>
         <!-- slogan -->
-        <section>
+        <section id="slogan" class="py-5 px-20 text-6xl bg-gradient-to-br from-yellow-300 via-blue-500 to-red-500">
             <h2>Find your work spell: the magic of employment awaits you at Hogwarts
 
                 Discover your career spell: the magic of employment awaits you at Hogwarts
@@ -70,7 +68,7 @@
             </h2>
         </section>
         <!-- cards-job -->
-        <section id="cards">
+        <section id="cards" class="flex flex-row flex-wrap justify-center gap-4 p-10 w-full">
            
         </section>
         <!-- new-form -->
