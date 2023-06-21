@@ -35,6 +35,7 @@ const renderJobs = (jobs) => {
         for (const {id, name, description, location, seniority, category} of jobs) {
             $("#cards").innerHTML += `
             <article class="w-4/5 p-4 border-solid border-4 border-black md:w-5/12 lg:w-1/4">
+               <figure id="image">IMAGEN</figure>
                <h3>${name}</h3>
                <p>${description}</p>
                <div>
@@ -61,7 +62,7 @@ const renderJobs = (jobs) => {
 const renderJobDetails = (job) => {
     if (job) {
         $("#cards").innerHTML += `
-            <article>
+            <article class="w-4/5 p-4 border-solid border-4 border-black md:w-5/12 lg:w-1/4">
                <h3>${job.name}</h3>
                <p>${job.description}</p>
                <div>
@@ -82,6 +83,11 @@ $(".btn-burger").addEventListener("click", () => {
         $("header").classList.toggle("mb-28")
         $("main").classList.toggle("mt-20")
     }
+})
+
+// image card - url
+$("#url-image").addEventListener("input", () => {
+    $("#image").style.backgroundImage = `url(${$("#url-image").value})`
 })
 
 // $(".btn-show-datails").addEventListener("click", () => {
