@@ -43,29 +43,32 @@
     </header>
     <main>
         <!-- banner-filter  -->
-        <section id="banner-filter" class="pt-28 p-5 bg-black md:pt-5">
+        <section id="banner-filter" class="bg-[#4a2b10] py-5 flex justify-center md:block">
             <form>
-                <select name="filter-location" id="">
+                <select name="filter-location" id="" class="rounded-md mx-3">
                     <option value="location">Location</option>
                 </select>
-                <select name="filter-seniotity" id="">
+                <select name="filter-seniotity" id="" class="rounded-md mx-3">
                     <option value="seniority">Seniority</option>
                 </select>
-                <select name="filter-category" id="">
+                <select name="filter-category" id="" class="rounded-md mx-3">
                     <option value="category">Category</option>
                 </select>
-                <button class="text-white p-2 bg-yellow-700">Search</button>
-                <button class="text-white p-2 bg-blue-700" type="reset">Clear</button>
+                <div class="mt-4 flex justify-center md:inline">
+                    <button class="text-white p-2 bg-yellow-700 rounded-lg mx-3">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search
+                    </button>
+                    <button class="text-white p-2 bg-[#7a5f37] rounded-lg mx-3" type="reset">
+                        <i class="fa-solid fa-broom"></i>
+                        Clean
+                    </button>
+                </div>
             </form>
         </section>
         <!-- slogan -->
-        <section id="slogan" class="py-5 px-20 text-6xl bg-gradient-to-br from-yellow-300 via-blue-500 to-red-500">
-            <h2>Find your work spell: the magic of employment awaits you at Hogwarts
-
-                Discover your career spell: the magic of employment awaits you at Hogwarts
-                
-                Unlock the power of talent: connect with exceptional wizards and witches at Hogwarts.
-            </h2>
+        <section id="slogan" class="py-5 px-20 text-xl bg-[#fcf5e7]">
+            <h2>Find your work spell: the magic of employment awaits you at Hogwarts</h2>
         </section>
         <!-- cards-job -->
         <section id="cards" class="flex flex-row flex-wrap justify-center gap-4 p-10 w-full">
