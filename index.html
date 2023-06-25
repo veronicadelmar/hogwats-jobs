@@ -20,22 +20,25 @@
     <!-- header -->
     <header class="flex justify-evenly items-center py-2 bg-[#fcf5e7]">
         <figure>
-            <img class="rounded-full w-12 md:w-40 lg:w-2/5 md:m-auto lg:mx-1" src="./assets/img/hogwarts-jobs.png" alt="Hogwats Jobs">
+            <img class="w-12 md:w-40 md:m-auto lg:w-2/5 lg:mx-1" src="./assets/img/hogwarts-jobs.png" alt="Hogwats Jobs">
         </figure>
         <!-- nav-bar -->
         <nav class="hidden absolute pt-40 text-[#4a2b10] md:block md:relative md:pt-0">
-            <ul class="flex-col lg:flex lg:flex-row">
-                <li class="flex items-center mb-4 lg:mb-0 lg:mr-4">
-                    <a href="index.html">Home</a>
+            <ul class="block lg:flex lg:flex-row">
+                <li class="flex items-center mb-4 md:mb-0 md:mr-4">
+                    <a href="index.html" class="lg:p-2 lg:rounded-lg lg:hover:text-white lg:hover:bg-[#7a5f37]">Home</a>
                     <img class="w-8 ml-2" src="./assets/icons/thunder.png" alt="thunder icon">
                 </li>
                 <li class="flex items-center">
-                    <a href="#" id="btn-create-job">Create Job at Hogwarts</a>
+                    <a href="#" id="btn-create-job" class="lg:p-2 lg:rounded-lg lg:hover:text-white lg:hover:bg-[#7a5f37]">Create Job at Hogwarts</a>
                     <img class="w-8 ml-2" src="./assets/icons/sorting-hat.png" alt="sorting hat icon">
                 </li>
             </ul>
         </nav>
-        <h1 class="pb-2 px-4 border-b-2 border-[#4a2b10] font-bold md:hidden">Hogwarts Jobs</h1>
+        <div class="w-2/5 md:hidden">
+            <h1 class="pb-2 px-4 font-bold text-center">Hogwarts Jobs</h1>
+            <img src="assets/icons/magic.png" alt="">
+        </div>
         <!-- burger-menu -->
         <figure class="md:hidden">
             <i class="btn-burger fa-solid fa-bars text-[#4a2b10] border-solid border-[#4a2b10] border-2 rounded p-1"></i>
