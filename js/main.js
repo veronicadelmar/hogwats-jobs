@@ -30,6 +30,36 @@ const getJobs = (jobId = "") =>{
     })
 }
 
+/* delete job */
+const deleteJob = (jobId) => {
+    fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs/${jobId}`, {
+        method: "DELETE"
+    }).finally(() => window.location.reload())
+}
+
+// register jobs
+const registerJobs = () => {
+    fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'Application/json'
+        },
+        body: JSON.stringify(saveJob())
+    })
+}
+
+// edit job
+const editJob = (jobId) => {
+    fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs/${jobId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'Application/json'
+        },
+        body: JSON.stringify(saveJob())
+    }).finally(() => window.location.reload())
+}
+
+
 /* all jobs */
 const renderJobs = (jobs) => {
     if (jobs) {
@@ -76,14 +106,22 @@ const renderJobDetails = (job) => {
             </article>
             `
     }
-    // mejorar
+    // mejorar edit
     $(".btn-edit").addEventListener("click", () => {
         hideElements(["#cards"])
         showElements(["#form"])
         isRegistered = true
         setFormValues(job) 
+        $("#submit").setAttribute("data-id", job.id)
+    })
+    //mejorar delete
+    $(".btn-delete").addEventListener("click", () => {
+        deleteJob(job.id)
     })
 }
+
+
+
 
 /* skills */
 const addSkill = (skill) => {
@@ -134,7 +172,24 @@ const setFormValues = (job) => {
     renderSkills()
 }
 
-
+const saveJob = () => {
+    return{
+            name: $("#job-title").value,
+            image: "",
+            description: $("#job-description").value,
+            location: $("#job-location").value,
+            category: $("#job-category").value,
+            seniority: $("#job-seniority").value,
+            benefits: {
+              vacation: $("#job-vacation").value,
+              health_ensurance: $("#job-health-ensuranse").value,
+              lunch_at_work: $("#job-lunch").checked
+            },
+            salary: $("#job-salary").value,
+            long_term: $("#job-long-term").checked,
+            skills: skills
+     }
+}
 
 /* events */
 
@@ -163,11 +218,12 @@ $(".btn-add").addEventListener("click", () => {
 $("#form").addEventListener("submit", (e) => {
     e.preventDefault()
     if (isRegistered) {
-        registerUsers()
+        const jobId = $("#submit").getAttribute("data-id")
+        console.log(jobId)
+        editJob(jobId)
+        hideElements("#form")
     } else {
-        const jobId = $("#edit-btn").getAttribute("data-id")
-        editUser(jobId)
-        hideElement("#form")
+        registerJobs()
     }
     $("#form").reset()
 })
