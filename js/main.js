@@ -63,18 +63,18 @@ const editJob = (jobId) => {
 /* all jobs */
 const renderJobs = (jobs) => {
     if (jobs) {
-        for (const {id, name, description, location, seniority, category} of jobs) {
+        for (const {id, name, image, description, location, seniority, category} of jobs) {
             $("#cards").innerHTML += `
-            <article class="w-4/5 p-4 border-solid border-4 border-black md:w-5/12 lg:w-1/4">
-               <figure id="image">IMAGEN</figure>
-               <h3>${name}</h3>
-               <p>${description}</p>
-               <div>
-                  <p>${location}</p>
-                  <p>${seniority}</p>
-                  <p>${category}</p>
+            <article class="w-full p-4 border-solid border-2 border-[#aa8855] rounded shadow-2xl md:w-5/12 lg:w-1/4">
+               <img src="${image}" alt="${name}" class="mb-2">
+               <h3 class="text-4xl font-bold">${name}</h3>
+               <p class="text-2xl text-justify">${description}</p>
+               <div class="text-xl text-[#fff] flex justify-between mb-6">
+                  <p class="p-1 rounded bg-[#9d193d]">${location}</p>
+                  <p class="p-1 rounded bg-[#c0882a]">${seniority}</p>
+                  <p class="p-1 rounded bg-[#20293a]">${category}</p>
                </div>
-               <button class="btn-show-datails" data-id="${id}">Show Details</button>
+               <button class="btn-show-datails text-2xl bg-[#00472d] text-[#fff] p-3 rounded" data-id="${id}">Show Details</button>
             </article>
             `
         }
@@ -93,18 +93,37 @@ const renderJobs = (jobs) => {
 const renderJobDetails = (job) => {
     if (job) {
         $("#cards").innerHTML += `
-            <article class="w-4/5 p-4 border-solid border-4 border-black md:w-5/12 lg:w-1/4">
-               <h3>${job.name}</h3>
-               <p>${job.description}</p>
-               <div>
-                  <p>${job.location}</p>
-                  <p>${job.seniority}</p>
-                  <p>${job.category}</p>
-               </div>
-               <button class="btn-edit" data-id="${job.id}" job-details="${job}">Edit Job</button>
-               <button class="btn-delete" data-id="${job.id}">Delete Job</button>
+            <article class="w-full p-4 border-solid border-2 border-[#aa8855] rounded shadow-2xl md:w-5/12 lg:w-1/4">
+            <img src="${job.image}" alt="${job.name}" class="mb-2">
+            <h3 class="text-4xl font-bold">${job.name}</h3>
+            <p class="text-2xl text-justify">${job.description}</p>
+            <h3 class="text-2xl font-bold">Location</h3>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.location}</p>
+            <h3 class="text-2xl font-bold">Benefits</h3>
+            <h4 class="text-xl font-bold">Vacation</h4>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.benefits.vacation}</p>
+            <h4 class="text-xl font-bold">Health ensurance</h4>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.benefits.health_ensurance}</p>
+            <h4 class="text-xl font-bold">Lunch at work</h4>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-6 text-xl">${renderBoolean(job.benefits.lunch_at_work)}</p>
+            <h4 class="text-xl font-bold">Salary (Galleons)</h4>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.salary}</p>
+            <h4 class="text-2xl font-bold">Requirements</h4>
+            <h4 class="text-xl font-bold">Seniority</h4>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.seniority}</p>
+            <h4 class="text-xl font-bold">Skills</h4>
+            <ul id="job-skills" class="list-disc"></ul>
+            <h4 class="text-xl font-bold">Term type</h4>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${renderBoolean(job.long_term)}</p>
+            <button class="btn-edit text-2xl bg-[#00472d] text-[#fff] p-3 rounded" data-id="${job.id}" job-details="${job}">Edit Job</button>
+            <button class="btn-delete text-2xl bg-[#9d193d] text-[#fff] p-3 rounded" data-id="${job.id}">Delete Job</button>
             </article>
             `
+            for (const skill of job.skills){
+                $("#job-skills").innerHTML += `
+                <li class="ml-6 text-xl font-semibold rounded bg-[#fcf5e7] mb-3 text-xl">${skill}</li>
+                `
+            }
     }
     // mejorar edit
     $(".btn-edit").addEventListener("click", () => {
@@ -120,6 +139,14 @@ const renderJobDetails = (job) => {
     })
 }
 
+/* render boolean */
+const renderBoolean = (value) => {
+    if(value){
+        return "Yes"
+    } else {
+        return "No"
+    }
+}
 
 
 
