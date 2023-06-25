@@ -1,20 +1,21 @@
-/* selectors, hide and show elements, clean container */
+/* selectors */
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
-
+/* hide and show elements */
 const hideElements = (selectors) => {
     for (const selector of selectors) {
         $(selector).classList.add("hidden")
     }
 }
-
 const showElements = (selectors) => {
     for (const selector of selectors) {
         $(selector).classList.remove("hidden")
     }
 }
-
+/* clean container and variables */
 const cleanContainer = (selector) => $(selector).innerHTML = ''
+let skills = []
+let isRegistered = false
 
 /* get jobs */
 const getJobs = (jobId = "") =>{
@@ -70,12 +71,72 @@ const renderJobDetails = (job) => {
                   <p>${job.seniority}</p>
                   <p>${job.category}</p>
                </div>
-               <button class="btn-edit" data-id="${job.id}">Edit Job</button>
+               <button class="btn-edit" data-id="${job.id}" job-details="${job}">Edit Job</button>
                <button class="btn-delete" data-id="${job.id}">Delete Job</button>
             </article>
             `
     }
+    // mejorar
+    $(".btn-edit").addEventListener("click", () => {
+        hideElements(["#cards"])
+        showElements(["#form"])
+        isRegistered = true
+        setFormValues(job) 
+    })
 }
+
+/* skills */
+const addSkill = (skill) => {
+    skills.push(skill)
+    $("#new-skill").value = ""
+    renderSkills()
+}
+
+const deleteSkill = (id) => {
+    skills.splice(id,1)
+    renderSkills()
+}
+
+const renderSkills = () => {
+    cleanContainer("#skills")
+    let id = 0
+    for (skill of skills){
+        $("#skills").innerHTML += `
+            <span>${skill}</span>
+            <button class="btn-delete" data-id="${id}">Delete</button>
+        `
+        id ++
+    }
+
+    for (const btn of $$(".btn-delete")) {
+        btn.addEventListener("click", () => {
+            const skillId = btn.getAttribute("data-id")
+            deleteSkill(skillId)
+        })
+    }
+}
+
+/* set form values */
+const setFormValues = (job) => {
+    $("#job-title").value = job.name
+    $("#job-description").value = job.description
+    $("#job-location").value = job.location
+    $("#job-seniority").value = job.seniority
+    $("#job-category").value = job.category
+    $("#job-vacation").value = job.benefits.vacation
+    $("#job-health-ensuranse").value = job.benefits.health_ensurance
+    $("#job-lunch").checked = job.benefits.lunch_at_work
+    $("#job-salary").value = job.salary
+    $("#job-long-term").checked = job.long_term
+    // imagen
+    // mejorar skills
+    skills = job.skills
+    renderSkills()
+}
+
+
+
+/* events */
 
 $(".btn-burger").addEventListener("click", () => {
     if (!$(".btn-burger").classList.contains("hidden")) {
@@ -85,16 +146,38 @@ $(".btn-burger").addEventListener("click", () => {
     }
 })
 
+$("#btn-create-job").addEventListener("click", () => {
+    hideElements(["#cards"])
+    showElements(["#form"])
+    isRegistered = false
+    renderSkills()
+})
+
+
+
+$(".btn-add").addEventListener("click", () => {
+    event.preventDefault()
+    addSkill($("#new-skill").value)
+})
+
+$("#form").addEventListener("submit", (e) => {
+    e.preventDefault()
+    if (isRegistered) {
+        registerUsers()
+    } else {
+        const jobId = $("#edit-btn").getAttribute("data-id")
+        editUser(jobId)
+        hideElement("#form")
+    }
+    $("#form").reset()
+})
+
+
+
 // image card - url
 $("#url-image").addEventListener("input", () => {
     $("#image").style.backgroundImage = `url(${$("#url-image").value})`
 })
-
-// $(".btn-show-datails").addEventListener("click", () => {
-//     const jobId = $(".btn-show-datails").getAttribute("data-id")
-//     cleanContainer("#cards")
-//     getJobs(jobId)
-// })
 
 
 
