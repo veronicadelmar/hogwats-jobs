@@ -58,11 +58,11 @@
                     <option value="category">Category</option>
                 </select>
                 <div class="mt-4 flex justify-center md:inline">
-                    <button class="text-white p-2 bg-yellow-700 rounded-lg mx-3 lg:active:bg-[#0be81a]">
+                    <button class="text-white p-2 bg-yellow-700 rounded-lg mx-3 lg:active:bg-[#17a512]">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         Search
                     </button>
-                    <button class="text-white p-2 bg-[#7a5f37] rounded-lg mx-3 lg:active:bg-[#ff0000]" type="reset">
+                    <button class="text-white p-2 bg-[#7a5f37] rounded-lg mx-3 lg:active:bg-[#dd161c]" type="reset">
                         <i class="fa-solid fa-broom"></i>
                         Clear
                     </button>
@@ -78,34 +78,34 @@
            
         </section>
         <!-- new-form -->
-        <form class="hidden flex flex-col p-4 border-solid border-4 border-black" id="form">
+        <form class="hidden flex flex-col m-12 p-4 border-solid border-4 rounded border-[#aa8855] text-xl" id="form">
             <label>Job title</label>
-            <input type="text" id="job-title" placeholder="Job title">
+            <input type="text" class="border-solid border-2 p-1 mb-4 rounded" id="job-title" placeholder="Job title">
             <label>Description</label>
-            <input type="text" id="job-description" placeholder="Description">
+            <input type="text" class="border-solid border-2 p-1 mb-4 rounded" id="job-description" placeholder="Description">
             <label>Location</label>
-            <input type="text" id="job-location" placeholder="Location">
+            <input type="text" class="border-solid border-2 p-1 mb-4 rounded" id="job-location" placeholder="Location">
             <label>Seniority</label>
-            <input type="text" id="job-seniority" placeholder="Seniority">
+            <input type="text" class="border-solid border-2 p-1 mb-4 rounded" id="job-seniority" placeholder="Seniority">
             <label>Category</label>
-            <input type="text" id="job-category" placeholder="Category">
+            <input type="text" class="border-solid border-2 p-1 mb-4 rounded" id="job-category" placeholder="Category">
             <label>Vacation</label>
-            <input type="text" id="job-vacation" placeholder="Vacation">
+            <input type="text" class="border-solid border-2 p-1 mb-4 rounded" id="job-vacation" placeholder="Vacation">
             <label>Health Ensurance</label>
-            <input type="text" id="job-health-ensuranse" placeholder="Health Ensurance">
+            <input type="text" class="border-solid border-2 p-1 mb-4 rounded" id="job-health-ensuranse" placeholder="Health Ensurance">
             <label>Lunch at Work</label>
-            <input type="checkbox" id="job-lunch">
+            <input type="checkbox" class="w-1/12 mb-4" id="job-lunch">
             <label>Salary</label>
-            <input type="number" id="job-salary" placeholder="Salary $$$">
+            <input type="number" class="border-solid border-2 p-1 mb-4 rounded" id="job-salary" placeholder="Salary $$$">
             <label>Long term</label>
-            <input type="checkbox" id="job-long-term">
+            <input type="checkbox" class="w-1/12 mb-4" id="job-long-term">
             <label>Image</label>
-            <input type="text" id="url-image" name="Uniform Resource Locator" placeholder="Copy image address">
+            <input type="text" id="url-image" class="border-solid border-2 p-1 mb-4 rounded" name="Uniform Resource Locator" placeholder="Copy image address">
             <label>Skills</label>
-            <input type="text" id="new-skill" placeholder="skill">
-            <button class="btn-add">Add</button>
+            <input type="text" class="border-solid border-2 p-1 mb-4 rounded" id="new-skill" placeholder="skill">
+            <button class="btn-add bg-[#0be81a] w-4/12 px-2 py-1 mb-6 rounded font-bold">Add Skill</button>
             <div id="skills"></div>
-            <button id="submit" data-id="">Submit</button>
+            <button id="submit" class="p-6 bg-[#7a5f37]" data-id="">Submit</button>
         </form>
     </main>
     <!-- footer -->
