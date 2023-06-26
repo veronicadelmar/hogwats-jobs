@@ -219,12 +219,11 @@ const saveJob = () => {
 }
 
 /* events */
-
 $(".btn-burger").addEventListener("click", () => {
     if (!$(".btn-burger").classList.contains("hidden")) {
         $("nav").classList.toggle("hidden")
-        $("header").classList.toggle("mb-28")
-        $("main").classList.toggle("mt-20")
+        $("header").classList.toggle("mb-[90px]")
+        $("main").classList.toggle("mt-[90px]")
     }
 })
 
