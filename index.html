@@ -71,12 +71,13 @@
             </form>
         </section>
         <!-- slogan -->
-        <section id="slogan" class="py-5 px-20 text-2xl text-center bg-[#fcf5e7]">
-            <h2>Find your work spell: the magic of employment awaits you at Hogwarts</h2>
+        <section class="hidden">
+            <h2>Unlock the power of talent: connect with exceptional wizards and witches at Hogwarts.</h2>
         </section>
         <!-- cards-job -->
-        <section id="cards" class="flex flex-row flex-wrap justify-center gap-4 py-10 px-4 w-full">
-           
+        <section id="cards" class="flex flex-row flex-wrap justify-evenly gap-2 py-10">
+            <!-- set time out -->
+            <img id="snitch" class="animate-spin w-12" src="https://img.icons8.com/color/48/snitch.png" alt="snitch"/>
         </section>
         <!-- new-form -->
         <form class="hidden flex flex-col m-12 p-4 border-solid border-4 rounded border-[#aa8855] text-xl" id="form">
@@ -101,7 +102,7 @@
             <label>Long term</label>
             <input type="checkbox" class="w-1/12 mb-4" id="job-long-term">
             <label>Image</label>
-            <input type="text" id="url-image" class="border-solid border-2 p-1 mb-4 rounded" name="Uniform Resource Locator" placeholder="Copy image address">
+            <input type="url" id="url-image" class="border-solid border-2 p-1 mb-4 rounded" name="Uniform Resource Locator" placeholder="Copy image address">
             <label>Skills</label>
             <input type="text" class="border-solid border-2 p-1 mb-4 rounded" id="new-skill" placeholder="skill">
             <button class="btn-add bg-[#0be81a] w-4/12 px-2 py-1 mb-6 rounded font-bold">Add Skill</button>
@@ -110,7 +111,7 @@
         </form>
     </main>
     <!-- footer -->
-    <footer class="text-center">
+    <footer class="hidden text-center footer">
         <!-- social-networks -->
         <section class="flex justify-around">
             <a href="https://github.com/veronicadelmar" target="_blank">

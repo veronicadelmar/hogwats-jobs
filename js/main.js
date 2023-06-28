@@ -1,7 +1,7 @@
-/* selectors */
+// selectors 
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
-/* hide and show elements */
+// hide and show elements
 const hideElements = (selectors) => {
     for (const selector of selectors) {
         $(selector).classList.add("hidden")
@@ -12,12 +12,11 @@ const showElements = (selectors) => {
         $(selector).classList.remove("hidden")
     }
 }
-/* clean container and variables */
+// lean container and variables
 const cleanContainer = (selector) => $(selector).innerHTML = ''
 let skills = []
 let isRegistered = false
-
-/* get jobs */
+// get jobs
 const getJobs = (jobId = "") =>{
     fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs/${jobId}`)
     .then(res => res.json())
@@ -29,14 +28,12 @@ const getJobs = (jobId = "") =>{
         }
     })
 }
-
-/* delete job */
+// delete job
 const deleteJob = (jobId) => {
     fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs/${jobId}`, {
         method: "DELETE"
     }).finally(() => window.location.reload())
 }
-
 // register jobs
 const registerJobs = () => {
     fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs`, {
@@ -47,7 +44,6 @@ const registerJobs = () => {
         body: JSON.stringify(saveJob())
     })
 }
-
 // edit job
 const editJob = (jobId) => {
     fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs/${jobId}`, {
@@ -59,38 +55,35 @@ const editJob = (jobId) => {
     }).finally(() => window.location.reload())
 }
 
-
-/* all jobs */
+// all jobs
 const renderJobs = (jobs) => {
+    showElements(["#snitch"])
     if (jobs) {
-        for (const {id, name, image, description, location, seniority, category} of jobs) {
-            $("#cards").innerHTML += `
-            <article class="w-full p-4 border-solid border-2 border-[#aa8855] rounded shadow-2xl md:w-5/12 lg:w-1/4">
-               <img src="${image}" alt="${name}" class="mb-2">
-               <h3 class="text-4xl font-bold">${name}</h3>
-               <p class="text-2xl text-justify">${description}</p>
-               <div class="text-xl text-[#fff] flex justify-between mb-6">
-                  <p class="p-1 rounded bg-[#9d193d]">${location}</p>
-                  <p class="p-1 rounded bg-[#c0882a]">${seniority}</p>
-                  <p class="p-1 rounded bg-[#20293a]">${category}</p>
-               </div>
-               <button class="btn-show-datails text-2xl bg-[#00472d] text-[#fff] p-3 rounded" data-id="${id}">Show Details</button>
-            </article>
-            `
-        }
-    }
-
-    for (const btn of $$(".btn-show-datails")) {
-        btn.addEventListener("click", () => {
-            cleanContainer("#cards")
-            const jobId = btn.getAttribute("data-id")
-            getJobs(jobId)
-        })
+        setTimeout(() => {
+            hideElements(["#snitch"])
+            showElements([".footer"])
+            for (const {id, name, image, description, location, seniority, category} of jobs) {
+                $("#cards").innerHTML += `
+                <article class="w-screen mx-10 p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:m-4 sm:w-5/12 lg:w-1/4">
+                <img src="${image}" alt="${name}" class="mb-6 w-60 m-auto">
+                <h3 class="text-4xl font-bold">${name}</h3>
+                <p class="text-xl text-justify">${description}</p>
+                <div class="text-lg text-[#fff] my-6 lg:flex lg:justify-between">
+                    <p class="p-1 rounded bg-[#9d193d] inline">${location}</p>
+                    <p class="p-1 rounded bg-[#c0882a] inline">${seniority}</p>
+                    <p class="p-1 rounded bg-[#20293a] inline">${category}</p>
+                </div>
+                <button class="text-2xl bg-[#00472d] text-[#fff] p-3 rounded" onclick="getJobs('${id}')">Show Details</button>
+                </article>
+                `
+            }
+        }, 2000)
     }
 }
 
 /* details job */
 const renderJobDetails = (job) => {
+    cleanContainer("#cards")
     if (job) {
         $("#cards").innerHTML += `
             <article class="w-full p-4 border-solid border-2 border-[#aa8855] rounded shadow-2xl md:w-5/12 lg:w-1/4">
@@ -127,7 +120,6 @@ const renderJobDetails = (job) => {
     }
     // mejorar edit
     $(".btn-edit").addEventListener("click", () => {
-        hideElements(["#cards"])
         showElements(["#form"])
         isRegistered = true
         setFormValues(job) 
@@ -202,7 +194,7 @@ const setFormValues = (job) => {
 const saveJob = () => {
     return{
             name: $("#job-title").value,
-            image: "",
+            image: $("#url-image").value,
             description: $("#job-description").value,
             location: $("#job-location").value,
             category: $("#job-category").value,
