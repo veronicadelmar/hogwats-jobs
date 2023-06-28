@@ -17,8 +17,17 @@ const cleanContainer = (selector) => $(selector).innerHTML = ''
 let skills = []
 let isRegistered = false
 // get jobs
-const getJobs = (location) =>{
-    let url = `https://649078f91e6aa71680cb527f.mockapi.io/jobs${location ? `?location=${location}` : ""}`
+const getJobs = (location = "", category = "", seniority = "") =>{
+    const url = new URL(`https://649078f91e6aa71680cb527f.mockapi.io/jobs`)
+    if(location != ""){
+        url.searchParams.append('location', location)
+    }
+    if(category != ""){
+        url.searchParams.append('category', category)
+    }
+    if(seniority != ""){
+        url.searchParams.append('seniority', seniority)
+    }
     fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -60,7 +69,6 @@ const editJob = (jobId) => {
         body: JSON.stringify(saveJob())
     }).finally(() => window.location.reload())
 }
-
 // all jobs
 const renderJobs = (jobs) => {
     cleanContainer("#cards")
@@ -234,7 +242,16 @@ $("#btn-create-job").addEventListener("click", () => {
 
 $("#search").addEventListener("click", () =>{
     const location = $("#location").value
-    getJobs(location)
+    const category = $("#category").value
+    const seniority = $("#seniority").value
+    getJobs(location, category, seniority)
+})
+
+$("#clear").addEventListener("click", () => {
+    $("#location").value = ""
+    $("#category").value = ""
+    $("#seniority").value = ""
+    getJobs()
 })
 
 $(".btn-add").addEventListener("click", () => {

@@ -48,6 +48,7 @@
     <main>
         <!-- banner-filter  -->
         <section id="banner-filter" class="bg-[#4a2b10] py-5 flex justify-center md:block">
+            <div>
                 <select name="filter-location" id="location" class="rounded-md mx-3">
                     <option value="">Location</option>
                     <option value="England">England</option>
@@ -55,22 +56,27 @@
                     <option value="Hogwarts">Hogwarts</option>
                     <option value="London">London</option>
                 </select>
-                <select name="filter-seniotity" id="" class="rounded-md mx-3">
+                <select name="filter-seniotity" id="seniority" class="rounded-md mx-3">
                     <option value="">Seniority</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Senior">Senior</option>
                 </select>
-                <select name="filter-category" id="" class="rounded-md mx-3">
+                <select name="filter-category" id="category" class="rounded-md mx-3">
                     <option value="">Category</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
                 </select>
                 <div class="mt-4 flex justify-center md:inline">
                     <button class="text-white p-2 bg-yellow-700 rounded-lg mx-3 lg:active:bg-[#17a512]" id="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         Search
                     </button>
-                    <button class="text-white p-2 bg-[#7a5f37] rounded-lg mx-3 lg:active:bg-[#dd161c]" type="reset">
+                    <button class="text-white p-2 bg-[#7a5f37] rounded-lg mx-3 lg:active:bg-[#dd161c]" id="clear" type="reset">
                         <i class="fa-solid fa-broom"></i>
                         Clear
                     </button>
                 </div>
+            </div>
         </section>
         <!-- slogan -->
         <section class="hidden">
