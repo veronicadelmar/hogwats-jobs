@@ -48,18 +48,21 @@
     <main>
         <!-- banner-filter  -->
         <section id="banner-filter" class="bg-[#4a2b10] py-5 flex justify-center md:block">
-            <form>
-                <select name="filter-location" id="" class="rounded-md mx-3">
-                    <option value="location">Location</option>
+                <select name="filter-location" id="location" class="rounded-md mx-3">
+                    <option value="">Location</option>
+                    <option value="England">England</option>
+                    <option value="Diagon Alley">Diagon Alley</option>
+                    <option value="Hogwarts">Hogwarts</option>
+                    <option value="London">London</option>
                 </select>
                 <select name="filter-seniotity" id="" class="rounded-md mx-3">
-                    <option value="seniority">Seniority</option>
+                    <option value="">Seniority</option>
                 </select>
                 <select name="filter-category" id="" class="rounded-md mx-3">
-                    <option value="category">Category</option>
+                    <option value="">Category</option>
                 </select>
                 <div class="mt-4 flex justify-center md:inline">
-                    <button class="text-white p-2 bg-yellow-700 rounded-lg mx-3 lg:active:bg-[#17a512]">
+                    <button class="text-white p-2 bg-yellow-700 rounded-lg mx-3 lg:active:bg-[#17a512]" id="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         Search
                     </button>
@@ -68,7 +71,6 @@
                         Clear
                     </button>
                 </div>
-            </form>
         </section>
         <!-- slogan -->
         <section class="hidden">
@@ -76,9 +78,10 @@
         </section>
         <!-- cards-job -->
         <section id="cards" class="flex flex-row flex-wrap justify-evenly gap-2 py-10">
-            <!-- set time out -->
-            <img id="snitch" class="animate-spin w-12" src="https://img.icons8.com/color/48/snitch.png" alt="snitch"/>
+            
         </section>
+        <!-- set time out -->
+        <img id="snitch" class="animate-spin w-12 m-auto" src="https://img.icons8.com/color/48/snitch.png" alt="snitch"/>
         <!-- new-form -->
         <form class="hidden flex flex-col m-12 p-4 border-solid border-4 rounded border-[#aa8855] text-xl" id="form">
             <label>Job title</label>
@@ -111,7 +114,7 @@
         </form>
     </main>
     <!-- footer -->
-    <footer class="hidden text-center footer">
+    <footer class="text-center footer">
         <!-- social-networks -->
         <section class="flex justify-around">
             <a href="https://github.com/veronicadelmar" target="_blank">

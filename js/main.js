@@ -17,15 +17,21 @@ const cleanContainer = (selector) => $(selector).innerHTML = ''
 let skills = []
 let isRegistered = false
 // get jobs
-const getJobs = (jobId = "") =>{
+const getJobs = (location) =>{
+    let url = `https://649078f91e6aa71680cb527f.mockapi.io/jobs${location ? `?location=${location}` : ""}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        console.log(url)
+        renderJobs(data)
+    })
+}
+//get job
+const getJob = (jobId) =>{
     fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs/${jobId}`)
     .then(res => res.json())
     .then(data => {
-        if(jobId === ""){
-            renderJobs(data)
-        } else {
-            renderJobDetails(data)
-        }
+        renderJobDetails(data)
     })
 }
 // delete job
@@ -57,11 +63,11 @@ const editJob = (jobId) => {
 
 // all jobs
 const renderJobs = (jobs) => {
+    cleanContainer("#cards")
     showElements(["#snitch"])
     if (jobs) {
         setTimeout(() => {
             hideElements(["#snitch"])
-            showElements([".footer"])
             for (const {id, name, image, description, location, seniority, category} of jobs) {
                 $("#cards").innerHTML += `
                 <article class="w-screen mx-10 p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:m-4 sm:w-5/12 lg:w-1/4">
@@ -73,7 +79,7 @@ const renderJobs = (jobs) => {
                     <p class="p-1 rounded bg-[#c0882a] inline">${seniority}</p>
                     <p class="p-1 rounded bg-[#20293a] inline">${category}</p>
                 </div>
-                <button class="text-2xl bg-[#00472d] text-[#fff] p-3 rounded" onclick="getJobs('${id}')">Show Details</button>
+                <button class="text-2xl bg-[#00472d] text-[#fff] p-3 rounded" onclick="getJob('${id}')">Show Details</button>
                 </article>
                 `
             }
@@ -226,7 +232,10 @@ $("#btn-create-job").addEventListener("click", () => {
     renderSkills()
 })
 
-
+$("#search").addEventListener("click", () =>{
+    const location = $("#location").value
+    getJobs(location)
+})
 
 $(".btn-add").addEventListener("click", () => {
     event.preventDefault()
