@@ -72,7 +72,7 @@ const renderJobs = (jobs) => {
             for (const {id, name, image, description, location, seniority, category} of jobs) {
                 $("#cards").innerHTML += `
                 <article class="w-screen mx-10 p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:m-4 sm:w-5/12 lg:w-1/4">
-                <img src="${image}" alt="${name}" class="mb-6 w-60 m-auto">
+                <img src="${image}" alt="${name}"class="hidden sm:flex mb-6 w-60 m-auto">
                 <h3 class="text-4xl font-bold">${name}</h3>
                 <p class="text-xl text-justify">${description}</p>
                 <div class="text-lg text-[#fff] my-6 lg:flex lg:justify-between">
@@ -80,7 +80,7 @@ const renderJobs = (jobs) => {
                     <p class="p-1 rounded bg-[#c0882a] inline">${seniority}</p>
                     <p class="p-1 rounded bg-[#20293a] inline">${category}</p>
                 </div>
-                <button class="text-2xl bg-[#00472d] text-[#fff] p-3 rounded" onclick="getJob('${id}')">Show Details</button>
+                <button class="text-2xl border-[#00472d] text-white bg-[#00472d]/[0.8] border-solid border-4 py-1 px-3 rounded-full" onclick="getJob('${id}')">Show Details</button>
                 </article>
                 `
             }
@@ -95,29 +95,41 @@ const renderJobDetails = (job) => {
         setTimeout(() => {
             hideElements(["#snitch"])
             $("#cards").innerHTML += `
-            <article class="w-full p-4 border-solid border-2 border-[#aa8855] rounded shadow-2xl md:w-5/12 lg:w-1/4">
-            <img src="${job.image}" alt="${job.name}" class="mb-2">
-            <h3 class="text-4xl font-bold">${job.name}</h3>
-            <p class="text-2xl text-justify">${job.description}</p>
-            <h3 class="text-2xl font-bold">Location</h3>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.location}</p>
-            <h3 class="text-2xl font-bold">Benefits</h3>
-            <h4 class="text-xl font-bold">Vacation</h4>
+            <article class="w-screen mx-10 p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:w-4/5 md:w-3/5 lg:w-3/6">
+            <div class="flex sm:flex-col lg:flex-row lg:justify-start lg:gap-2">
+                <figure class="hidden md:flex md:m-auto md:mb-4">
+                    <img src="${job.image}" alt="${job.name}" class="sm:w-60">
+                </figure>
+                <article class="lg:m-auto lg:w-3/5">
+                    <h3 class="text-4xl font-bold">${job.name}</h3>
+                    <p class="text-2xl text-justify">${job.description}</p>
+                </article>
+            </div>
+            <img class="w-6 inline" src="https://img.icons8.com/color/48/marker--v1.png" alt="${job.location}"/>
+            <h3 class="text-2xl font-bold inline">Location</h3>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] my-3 text-xl">${job.location}</p>
+            <img class="w-8 inline" src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-benefits-recruitment-agency-flaticons-flat-flat-icons.png" alt="Benefits"/>
+            <h3 class="text-2xl font-bold inline">Benefits</h3>
+            <h4 class="text-xl font-boldmy-6">Vacation</h4>
             <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.benefits.vacation}</p>
             <h4 class="text-xl font-bold">Health ensurance</h4>
             <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.benefits.health_ensurance}</p>
             <h4 class="text-xl font-bold">Lunch at work</h4>
             <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-6 text-xl">${renderBoolean(job.benefits.lunch_at_work)}</p>
-            <h4 class="text-xl font-bold">Salary (Galleons)</h4>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.salary}</p>
-            <h4 class="text-2xl font-bold">Requirements</h4>
+            <img class="w-8 inline" src="https://img.icons8.com/emoji/48/coin-emoji.png" alt="${job.salary}"/>
+            <h4 class="text-xl font-bold inline">Salary (Galleons)</h4>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] my-3 text-xl">${job.salary}</p>
+            <img class="w-8 inline" src="https://img.icons8.com/plasticine/100/magic-crystal-ball.png" alt="${job.seniority}"/>
+            <h4 class="text-2xl font-bold inline">Requirements</h4>
             <h4 class="text-xl font-bold">Seniority</h4>
             <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.seniority}</p>
-            <h4 class="text-xl font-bold">Skills</h4>
-            <ul id="job-skills" class="list-disc"></ul>
-            <h4 class="text-xl font-bold">Term type</h4>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${renderBoolean(job.long_term)}</p>
-            <button class="btn-edit text-2xl bg-[#00472d] text-[#fff] p-3 rounded" data-id="${job.id}" job-details="${job}">Edit Job</button>
+            <img class="w-12 inline" src="https://img.icons8.com/bubbles/50/tarot-cards.png" alt="Skills"/>
+            <h4 class="text-xl font-bold inline">Skills</h4>
+            <ul id="job-skills" class="list-disc my-3"></ul>
+            <img class="w-8 inline" src="https://img.icons8.com/fluency/48/delivery-time.png" alt="${renderBoolean(job.long_term)}"/>
+            <h4 class="text-xl font-bold inline">Term type</h4>
+            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] my-3 text-xl">${renderBoolean(job.long_term)}</p>
+            <button class="btn-edit text-2xl bg-[#00472d] text-[#fff] p-3 rounded mr-[15px]" data-id="${job.id}" job-details="${job}">Edit Job</button>
             <button class="btn-delete text-2xl bg-[#9d193d] text-[#fff] p-3 rounded" data-id="${job.id}">Delete Job</button>
             </article>
             `
@@ -163,8 +175,9 @@ const renderSkills = () => {
     let id = 0
     for (skill of skills){
         $("#skills").innerHTML += `
-            <span>${skill}</span>
-            <button class="btn-delete" data-id="${id}">Delete</button>
+            <li class="p-2 italic rounded bg-[#fcf5e7] my-2 w-fit">${skill}
+                <button class="btn-delete text-xl bg-[#9d193d] text-[#fff] pt-1 px-3 rounded-full" data-id="${id}">Delete</button>
+            </li>
         `
         id ++
     }
