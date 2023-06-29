@@ -18,11 +18,11 @@ let skills = []
 let isRegistered = false
 // get jobs
 const getJobs = (location = "", category = "", seniority = "") =>{
-    const url = new URL(`https://649078f91e6aa71680cb527f.mockapi.io/jobs`)
-    location ? url.searchParams.append('location', location) : null
-    category ? url.searchParams.append('category', category) : null
-    seniority ? url.searchParams.append('seniority', seniority) : null
-    fetch(url)
+    let search = ""
+    search = location != "" ? `?location=${location}` : ""
+    search = category != "" ? `?category=${category}` : "";
+    search = seniority != "" ? `?seniority=${seniority}` : "";
+    fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs${search}`)
     .then(res => res.json())
     .then(data => {
         renderJobs(data)
@@ -77,11 +77,11 @@ const renderJobs = (jobs) => {
                 <h3 class="text-4xl font-bold">${name}</h3>
                 <p class="text-xl text-justify">${minDescription}...</p>
                 <div class="text-lg text-[#fff] my-6 flex flex-wrap gap-2 justify-star">
-                    <p class="p-1 rounded bg-[#9d193d] inline">${location}</p>
-                    <p class="p-1 rounded bg-[#c0882a] inline">${seniority}</p>
-                    <p class="p-1 rounded bg-[#164685] inline">${category}</p>
+                    <p class="p-1 rounded bg-[#c61c1c] inline">${location}</p>
+                    <p class="p-1 rounded bg-[#bdbd00] inline">${seniority}</p>
+                    <p class="p-1 rounded bg-[#1c6f98] inline">${category}</p>
                 </div>
-                <button class="text-2xl border-[#00472d] text-white bg-[#00472d]/[0.8] border-solid border-4 py-1 px-3 rounded-full lg:hover:bg-[#00472d] lg:hover:border-yellow-700" onclick="getJob('${id}')">Show Details</button>
+                <button class="text-2xl border-[#006231] text-white bg-[#006231]/[0.8] border-solid border-4 py-1 px-3 rounded-full lg:hover:bg-[#00472d] lg:hover:border-[#aa8855]" onclick="getJob('${id}')">Show Details</button>
                 </article>
                 `
             }
@@ -130,8 +130,8 @@ const renderJobDetails = (job) => {
             <img class="w-8 inline" src="https://i.ibb.co/DMhD06R/giroscope.png" alt="${renderBoolean(job.long_term)}"/>
             <h4 class="text-xl font-bold inline">Term type</h4>
             <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] my-3 text-xl">${renderBoolean(job.long_term)}</p>
-            <button class="btn-edit text-2xl bg-[#00472d] text-[#fff] p-3 rounded mr-[15px]" data-id="${job.id}" job-details="${job}">Edit Job</button>
-            <button class="btn-delete text-2xl bg-[#9d193d] text-[#fff] p-3 rounded" data-id="${job.id}">Delete Job</button>
+            <button class="btn-edit text-2xl bg-[#006231] text-[#fff] p-3 rounded mr-[15px]" data-id="${job.id}" job-details="${job}">Edit Job</button>
+            <button class="btn-delete text-2xl bg-[#c61c1c] text-[#fff] p-3 rounded">Delete Job</button>
             </article>
             `
             for (const skill of job.skills){
@@ -146,9 +146,11 @@ const renderJobDetails = (job) => {
                 setFormValues(job) 
                 $("#submit").setAttribute("data-id", job.id)
             })
-            //mejorar delete
+            // open modal delete
             $(".btn-delete").addEventListener("click", () => {
-                deleteJob(job.id)
+                showElements(["#modal-delete"])
+                hideElements(["#cards"])
+                $("#delete-job").setAttribute("data-id", job.id)
             })
         }, 2000)
     }
@@ -279,6 +281,26 @@ $("#form").addEventListener("submit", (e) => {
 $("#url-image").addEventListener("input", () => {
     $("#image").style.backgroundImage = `url(${$("#url-image").value})`
 })
+// selects
+$("#location").addEventListener("change", () => {
+    $("#category").value = ""
+    $("#seniority").value = ""
+})
+$("#category").addEventListener("change", () => {
+    $("#location").value = ""
+    $("#seniority").value = ""
+})
+$("#seniority").addEventListener("change", () => {
+    $("#location").value = ""
+    $("#category").value = ""
+})
+
+$("#delete-job").addEventListener("click", () => {
+    const id = $("#delete-job").getAttribute("data-id")
+    deleteJob(id)
+})
+
+
 
 window.addEventListener("load", () => {
     getJobs()

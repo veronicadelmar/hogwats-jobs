@@ -117,6 +117,24 @@
             <ul id="skills" class="w-full md:flex md:flex-row flex-wrap justify-evenly gap-3"></ul>
             <button id="submit" class="p-6 bg-[#7a5f37]" data-id="">Submit</button>
         </form>
+        <!-- modal -->
+        <section id="modal-delete" class="hidden py-10 drop-shadow-[0_0_0.75rem_rgb(255,255,255)]">
+            <article class="w-[300px] h-[280px] p-6 rounded bg-[#fcf5e7] m-auto lg:w-[500px]">
+                <h5 class="text-3xl mx-6 text-center">¿Do you want to delete the selected job?</h5>
+                <div class="flex justify-center pt-5">
+                    <div>
+                        <img class="w-12 m-auto" src="https://img.icons8.com/plasticine/100/hedwig.png" alt="hedwig"/>
+                        <a href="index.html">
+                            <button id="cancel" class="py-2 px-8 bg-white border-2 border-[#48c774] rounded">Cancel</button>
+                        </a>
+                    </div>
+                    <div>
+                        <img class="w-12 m-auto" src="https://img.icons8.com/nolan/64/deathly-hallows.png" alt="deathly-hallows"/>
+                        <button id="delete-job" data-id="" class="text-white ml-3 mr-3 py-2 px-8 bg-[#f14668] rounded">Delete</button>
+                    </div>
+                </div>
+            </article>
+        </section>
     </main>
     <!-- footer -->
     <footer class="text-center footer">
