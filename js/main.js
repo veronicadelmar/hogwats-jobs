@@ -70,17 +70,18 @@ const renderJobs = (jobs) => {
         setTimeout(() => {
             hideElements(["#snitch"])
             for (const {id, name, image, description, location, seniority, category} of jobs) {
+                const minDescription = description.slice(0, 70);
                 $("#cards").innerHTML += `
                 <article class="w-screen mx-10 p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:m-4 sm:w-5/12 lg:w-1/4">
-                <img src="${image}" alt="${name}"class="hidden sm:flex mb-6 w-60 m-auto">
+                <img src="${image}" alt="${name}"class="hidden sm:flex mb-6 w-60 m-auto rounded">
                 <h3 class="text-4xl font-bold">${name}</h3>
-                <p class="text-xl text-justify">${description}</p>
-                <div class="text-lg text-[#fff] my-6 lg:flex lg:justify-between">
+                <p class="text-xl text-justify">${minDescription}...</p>
+                <div class="text-lg text-[#fff] my-6 flex flex-wrap gap-2 justify-star">
                     <p class="p-1 rounded bg-[#9d193d] inline">${location}</p>
                     <p class="p-1 rounded bg-[#c0882a] inline">${seniority}</p>
-                    <p class="p-1 rounded bg-[#20293a] inline">${category}</p>
+                    <p class="p-1 rounded bg-[#164685] inline">${category}</p>
                 </div>
-                <button class="text-2xl border-[#00472d] text-white bg-[#00472d]/[0.8] border-solid border-4 py-1 px-3 rounded-full" onclick="getJob('${id}')">Show Details</button>
+                <button class="text-2xl border-[#00472d] text-white bg-[#00472d]/[0.8] border-solid border-4 py-1 px-3 rounded-full lg:hover:bg-[#00472d] lg:hover:border-yellow-700" onclick="getJob('${id}')">Show Details</button>
                 </article>
                 `
             }
@@ -95,10 +96,10 @@ const renderJobDetails = (job) => {
         setTimeout(() => {
             hideElements(["#snitch"])
             $("#cards").innerHTML += `
-            <article class="w-screen mx-10 p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:w-4/5 md:w-3/5 lg:w-3/6">
-            <div class="flex sm:flex-col lg:flex-row lg:justify-start lg:gap-2">
-                <figure class="hidden md:flex md:m-auto md:mb-4">
-                    <img src="${job.image}" alt="${job.name}" class="sm:w-60">
+            <article class="w-screen mx-10 p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:w-4/5 md:w-3/5 lg:w-4/6">
+            <div class="flex mb-8 sm:flex-col lg:flex-row lg:justify-start lg:gap-2">
+                <figure class="hidden md:flex md:m-auto md:mb-4 lg:m-auto">
+                    <img src="${job.image}" alt="${job.name}" class="sm:w-60 rounded">
                 </figure>
                 <article class="lg:m-auto lg:w-3/5">
                     <h3 class="text-4xl font-bold">${job.name}</h3>
@@ -108,7 +109,7 @@ const renderJobDetails = (job) => {
             <img class="w-6 inline" src="https://img.icons8.com/color/48/marker--v1.png" alt="${job.location}"/>
             <h3 class="text-2xl font-bold inline">Location</h3>
             <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] my-3 text-xl">${job.location}</p>
-            <img class="w-8 inline" src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-benefits-recruitment-agency-flaticons-flat-flat-icons.png" alt="Benefits"/>
+            <img class="w-8 inline" src="https://img.icons8.com/doodle/48/scroll.png" alt="Benefits"/>
             <h3 class="text-2xl font-bold inline">Benefits</h3>
             <h4 class="text-xl font-boldmy-6">Vacation</h4>
             <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.benefits.vacation}</p>
@@ -126,7 +127,7 @@ const renderJobDetails = (job) => {
             <img class="w-12 inline" src="https://img.icons8.com/bubbles/50/tarot-cards.png" alt="Skills"/>
             <h4 class="text-xl font-bold inline">Skills</h4>
             <ul id="job-skills" class="list-disc my-3"></ul>
-            <img class="w-8 inline" src="https://img.icons8.com/fluency/48/delivery-time.png" alt="${renderBoolean(job.long_term)}"/>
+            <img class="w-8 inline" src="https://i.ibb.co/DMhD06R/giroscope.png" alt="${renderBoolean(job.long_term)}"/>
             <h4 class="text-xl font-bold inline">Term type</h4>
             <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] my-3 text-xl">${renderBoolean(job.long_term)}</p>
             <button class="btn-edit text-2xl bg-[#00472d] text-[#fff] p-3 rounded mr-[15px]" data-id="${job.id}" job-details="${job}">Edit Job</button>
@@ -257,7 +258,7 @@ $("#clear").addEventListener("click", () => {
 })
 
 $(".btn-add").addEventListener("click", () => {
-    e.preventDefault()
+    event.preventDefault()
     addSkill($("#new-skill").value)
 })
 
