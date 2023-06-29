@@ -19,23 +19,16 @@ let isRegistered = false
 // get jobs
 const getJobs = (location = "", category = "", seniority = "") =>{
     const url = new URL(`https://649078f91e6aa71680cb527f.mockapi.io/jobs`)
-    if(location != ""){
-        url.searchParams.append('location', location)
-    }
-    if(category != ""){
-        url.searchParams.append('category', category)
-    }
-    if(seniority != ""){
-        url.searchParams.append('seniority', seniority)
-    }
+    location ? url.searchParams.append('location', location) : null
+    category ? url.searchParams.append('category', category) : null
+    seniority ? url.searchParams.append('seniority', seniority) : null
     fetch(url)
     .then(res => res.json())
     .then(data => {
-        console.log(url)
         renderJobs(data)
     })
 }
-//get job
+// get job
 const getJob = (jobId) =>{
     fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs/${jobId}`)
     .then(res => res.json())
@@ -57,7 +50,7 @@ const registerJobs = () => {
             'Content-Type': 'Application/json'
         },
         body: JSON.stringify(saveJob())
-    })
+    }).finally(() => window.location.reload())
 }
 // edit job
 const editJob = (jobId) => {
@@ -94,12 +87,14 @@ const renderJobs = (jobs) => {
         }, 2000)
     }
 }
-
-/* details job */
+// details job
 const renderJobDetails = (job) => {
     cleanContainer("#cards")
+    showElements(["#snitch"])
     if (job) {
-        $("#cards").innerHTML += `
+        setTimeout(() => {
+            hideElements(["#snitch"])
+            $("#cards").innerHTML += `
             <article class="w-full p-4 border-solid border-2 border-[#aa8855] rounded shadow-2xl md:w-5/12 lg:w-1/4">
             <img src="${job.image}" alt="${job.name}" class="mb-2">
             <h3 class="text-4xl font-bold">${job.name}</h3>
@@ -131,21 +126,21 @@ const renderJobDetails = (job) => {
                 <li class="ml-6 text-xl font-semibold rounded bg-[#fcf5e7] mb-3 text-xl">${skill}</li>
                 `
             }
+            // mejorar edit
+            $(".btn-edit").addEventListener("click", () => {
+                showElements(["#form"])
+                isRegistered = true
+                setFormValues(job) 
+                $("#submit").setAttribute("data-id", job.id)
+            })
+            //mejorar delete
+            $(".btn-delete").addEventListener("click", () => {
+                deleteJob(job.id)
+            })
+        }, 2000)
     }
-    // mejorar edit
-    $(".btn-edit").addEventListener("click", () => {
-        showElements(["#form"])
-        isRegistered = true
-        setFormValues(job) 
-        $("#submit").setAttribute("data-id", job.id)
-    })
-    //mejorar delete
-    $(".btn-delete").addEventListener("click", () => {
-        deleteJob(job.id)
-    })
 }
-
-/* render boolean */
+// render boolean
 const renderBoolean = (value) => {
     if(value){
         return "Yes"
@@ -153,21 +148,16 @@ const renderBoolean = (value) => {
         return "No"
     }
 }
-
-
-
-/* skills */
+// functions skills
 const addSkill = (skill) => {
     skills.push(skill)
     $("#new-skill").value = ""
     renderSkills()
 }
-
 const deleteSkill = (id) => {
     skills.splice(id,1)
     renderSkills()
 }
-
 const renderSkills = () => {
     cleanContainer("#skills")
     let id = 0
@@ -186,8 +176,7 @@ const renderSkills = () => {
         })
     }
 }
-
-/* set form values */
+// set form values
 const setFormValues = (job) => {
     $("#job-title").value = job.name
     $("#job-description").value = job.description
@@ -199,12 +188,12 @@ const setFormValues = (job) => {
     $("#job-lunch").checked = job.benefits.lunch_at_work
     $("#job-salary").value = job.salary
     $("#job-long-term").checked = job.long_term
-    // imagen
+    $("#url-image").value = job.image
     // mejorar skills
     skills = job.skills
     renderSkills()
 }
-
+// save job
 const saveJob = () => {
     return{
             name: $("#job-title").value,
@@ -224,7 +213,7 @@ const saveJob = () => {
      }
 }
 
-/* events */
+// events
 $(".btn-burger").addEventListener("click", () => {
     if (!$(".btn-burger").classList.contains("hidden")) {
         $("nav").classList.toggle("hidden")
@@ -255,7 +244,7 @@ $("#clear").addEventListener("click", () => {
 })
 
 $(".btn-add").addEventListener("click", () => {
-    event.preventDefault()
+    e.preventDefault()
     addSkill($("#new-skill").value)
 })
 
@@ -263,23 +252,19 @@ $("#form").addEventListener("submit", (e) => {
     e.preventDefault()
     if (isRegistered) {
         const jobId = $("#submit").getAttribute("data-id")
-        console.log(jobId)
         editJob(jobId)
         hideElements("#form")
+        
     } else {
-        registerJobs()
+        registerJobs()        
     }
     $("#form").reset()
 })
-
-
 
 // image card - url
 $("#url-image").addEventListener("input", () => {
     $("#image").style.backgroundImage = `url(${$("#url-image").value})`
 })
-
-
 
 window.addEventListener("load", () => {
     getJobs()
