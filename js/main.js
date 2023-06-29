@@ -230,12 +230,12 @@ const saveJob = () => {
 }
 
 // events
-$(".btn-burger").addEventListener("click", () => {
-    if (!$(".btn-burger").classList.contains("hidden")) {
+$("#open-menu-btn").addEventListener("click", () => {
+    if (!$("#open-menu-btn").classList.contains("hidden")) {
         $("nav").classList.toggle("hidden")
         $("header").classList.toggle("mb-[90px]")
         $("main").classList.toggle("mt-[90px]")
-    }
+    } 
 })
 
 $("#btn-create-job").addEventListener("click", () => {
