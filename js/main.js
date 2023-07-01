@@ -72,16 +72,16 @@ const renderJobs = (jobs) => {
             for (const {id, name, image, description, location, seniority, category} of jobs) {
                 const minDescription = description.slice(0, 70);
                 $("#cards").innerHTML += `
-                <article class="w-screen mx-10 p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:m-4 sm:w-5/12 lg:w-1/4">
+                <article class="w-screen bg-white mx-10 p-4 border-2 border-[#aa8855] rounded-lg shadow-2xl sm:mb-4 sm:mx-0 sm:w-5/12 lg:w-[30%]">
                 <img src="${image}" alt="${name}"class="hidden sm:flex mb-6 w-60 m-auto rounded">
                 <h3 class="text-4xl font-bold">${name}</h3>
-                <p class="text-xl text-justify">${minDescription}...</p>
-                <div class="text-lg text-[#fff] my-6 flex flex-wrap gap-2 justify-star">
-                    <p class="p-1 rounded bg-[#c61c1c] inline">${location}</p>
-                    <p class="p-1 rounded bg-[#bdbd00] inline">${seniority}</p>
-                    <p class="p-1 rounded bg-[#1c6f98] inline">${category}</p>
+                <p class="text-xl text-justify mb-8">${minDescription}...</p>
+                <div class=" text-[#fff] mb-4 mt-2 flex flex-wrap gap-4 justify-star">
+                    <p class="p-1 px-2 rounded bg-[#c61c1c] inline">${location}</p>
+                    <p class="p-1 px-2 rounded bg-[#d8a110] inline">${seniority}</p>
+                    <p class="p-1 px-2 rounded bg-[#1c6f98] inline">${category}</p>
                 </div>
-                <button class="text-2xl border-[#006231] text-white bg-[#006231]/[0.8] border-solid border-4 py-1 px-3 rounded-full lg:hover:bg-[#00472d] lg:hover:border-[#aa8855]" onclick="getJob('${id}')">Show Details</button>
+                <button class="text-2xl font-medium text-white bg-[#006231] pt-1 px-3 rounded-full lg:hover:bg-[#00472d]/[0.8]" onclick="getJob('${id}')">Show Details</button>
                 </article>
                 `
             }
@@ -96,47 +96,63 @@ const renderJobDetails = (job) => {
         setTimeout(() => {
             hideElements(["#snitch"])
             $("#cards").innerHTML += `
-            <article class="w-screen mx-10 p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:w-4/5 md:w-3/5 lg:w-4/6">
+            <article class="w-screen mx-10 bg-white p-4 border-solid border-2 border-[#aa8855] rounded-lg shadow-2xl sm:w-4/5 md:w-3/5 lg:w-4/6">
             <div class="flex mb-8 sm:flex-col lg:flex-row lg:justify-start lg:gap-2">
-                <figure class="hidden md:flex md:m-auto md:mb-4 lg:m-auto">
-                    <img src="${job.image}" alt="${job.name}" class="sm:w-60 rounded">
+                <figure class="hidden md:flex md:m-auto sm:mb-4 lg:m-auto">
+                    <img src="${job.image}" alt="${job.name}" class="sm:w-60 sm:mb-4 rounded">
                 </figure>
                 <article class="lg:m-auto lg:w-3/5">
-                    <h3 class="text-4xl font-bold">${job.name}</h3>
+                    <h3 class="text-4xl font-bold mb-2">${job.name}</h3>
                     <p class="text-2xl text-justify">${job.description}</p>
                 </article>
             </div>
-            <img class="w-6 inline" src="https://img.icons8.com/color/48/marker--v1.png" alt="${job.location}"/>
-            <h3 class="text-2xl font-bold inline">Location</h3>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] my-3 text-xl">${job.location}</p>
-            <img class="w-8 inline" src="https://img.icons8.com/doodle/48/scroll.png" alt="Benefits"/>
-            <h3 class="text-2xl font-bold inline">Benefits</h3>
-            <h4 class="text-xl font-boldmy-6">Vacation</h4>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.benefits.vacation}</p>
-            <h4 class="text-xl font-bold">Health ensurance</h4>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.benefits.health_ensurance}</p>
-            <h4 class="text-xl font-bold">Lunch at work</h4>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-6 text-xl">${renderBoolean(job.benefits.lunch_at_work)}</p>
-            <img class="w-8 inline" src="https://img.icons8.com/emoji/48/coin-emoji.png" alt="${job.salary}"/>
-            <h4 class="text-xl font-bold inline">Salary (Galleons)</h4>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] my-3 text-xl">${job.salary}</p>
-            <img class="w-8 inline" src="https://img.icons8.com/plasticine/100/magic-crystal-ball.png" alt="${job.seniority}"/>
-            <h4 class="text-2xl font-bold inline">Requirements</h4>
-            <h4 class="text-xl font-bold">Seniority</h4>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] mb-3 text-xl">${job.seniority}</p>
+            <div class="flex flex-row flex-wrap justify-between mb-3">
+                <div>
+                    <img class="w-6 inline" src="https://img.icons8.com/color/48/marker--v1.png" alt="${job.location}"/>
+                    <h3 class="text-xl font-bold inline">Location</h3>
+                    <p class="font-medium p-1 px-4 w-fit rounded bg-[#fcf5e7] my-3">${job.location}</p>
+                </div>
+                <div>
+                    <img class="w-8 inline" src="https://i.ibb.co/DMhD06R/giroscope.png" alt="${renderBoolean(job.long_term)}"/>
+                    <h4 class="text-xl font-bold inline">Term type</h4>
+                    <p class="font-medium p-1 text-center rounded bg-[#fcf5e7] my-3">${renderBoolean(job.long_term)}</p>  
+                </div>
+                <div>
+                    <img class="w-8 inline" src="https://img.icons8.com/emoji/48/coin-emoji.png" alt="${job.salary}"/>
+                    <h4 class="text-xl font-bold inline">Salary (Galleons)</h4>
+                    <p class="font-medium text-center p-1 rounded bg-[#fcf5e7] my-3">${job.salary}</p>
+                </div>
+            </div>
+            <div class="lg:flex lg:flex-row lg:gap-2 lg:flex-wrap lg:justify-between">
+                <div class="lg:w-[46%]">
+                    <img class="w-8 inline mb-2" src="https://img.icons8.com/plasticine/100/magic-crystal-ball.png" alt="${job.seniority}"/>
+                    <h4 class="text-xl font-bold inline">Requirements</h4>
+                    <h4 class="text-xl font-bold">Seniority</h4>
+                    <p class="font-medium p-1 rounded bg-[#fcf5e7] mb-3">${job.seniority}</p>
+                </div>
+                <div class="lg:w-[46%]">
+                    <img class="w-8 inline" src="https://img.icons8.com/doodle/48/scroll.png" alt="Benefits"/>
+                    <h3 class="text-xl font-bold inline">Benefits</h3>
+                    <h4 class="text-xl font-bold">Vacation</h4>
+                    <p class="font-medium p-1 rounded bg-[#fcf5e7] mb-3">${job.benefits.vacation}</p>
+                    <h4 class="text-xl font-bold">Health ensurance</h4>
+                    <p class="font-medium p-1 rounded bg-[#fcf5e7] mb-3">${job.benefits.health_ensurance}</p>
+                    <h4 class="text-xl font-bold">Lunch at work</h4>
+                    <p class="font-medium p-1 rounded bg-[#fcf5e7] mb-6">${renderBoolean(job.benefits.lunch_at_work)}</p>
+                </div>
+            </div>
             <img class="w-12 inline" src="https://img.icons8.com/bubbles/50/tarot-cards.png" alt="Skills"/>
             <h4 class="text-xl font-bold inline">Skills</h4>
-            <ul id="job-skills" class="list-disc my-3"></ul>
-            <img class="w-8 inline" src="https://i.ibb.co/DMhD06R/giroscope.png" alt="${renderBoolean(job.long_term)}"/>
-            <h4 class="text-xl font-bold inline">Term type</h4>
-            <p class="text-xl font-semibold p-1 rounded bg-[#fcf5e7] my-3 text-xl">${renderBoolean(job.long_term)}</p>
-            <button class="btn-edit text-2xl bg-[#006231] text-[#fff] p-3 rounded mr-[15px]" data-id="${job.id}" job-details="${job}">Edit Job</button>
-            <button class="btn-delete text-2xl bg-[#c61c1c] text-[#fff] p-3 rounded">Delete Job</button>
+            <ul id="job-skills" class="list-disc my-3 lg:w-[50%]"></ul>
+            <div class="flex flex-row justify-end">
+                <button class="btn-edit text-2xl bg-[#006231] font-semibold text-[#fff] pt-1 px-3 rounded mr-[15px]" data-id="${job.id}" job-details="${job}">Edit Job</button>
+                <button class="btn-delete text-2xl bg-[#c61c1c] font-semibold text-[#fff] pt-1 px-3 rounded">Delete Job</button>
+            </div>
             </article>
             `
             for (const skill of job.skills){
                 $("#job-skills").innerHTML += `
-                <li class="ml-6 text-xl font-semibold rounded bg-[#fcf5e7] mb-3 text-xl">${skill}</li>
+                <li class="ml-6 font-medium rounded bg-[#fcf5e7] mb-3">${skill}</li>
                 `
             }
             // mejorar edit
@@ -150,6 +166,7 @@ const renderJobDetails = (job) => {
             $(".btn-delete").addEventListener("click", () => {
                 showElements(["#modal-delete"])
                 hideElements(["#cards"])
+                hideElements(["#form"])
                 $("#delete-job").setAttribute("data-id", job.id)
             })
         }, 2000)
@@ -179,7 +196,7 @@ const renderSkills = () => {
     for (skill of skills){
         $("#skills").innerHTML += `
             <li class="p-2 italic rounded bg-[#fcf5e7] my-2 w-fit">${skill}
-                <button class="btn-delete text-xl bg-[#9d193d] text-[#fff] pt-1 px-3 rounded-full" data-id="${id}">Delete</button>
+                <button class="btn-delete text-xl bg-[#c61c1c] text-[#fff] pt-1 px-3 rounded-full" data-id="${id}">Delete</button>
             </li>
         `
         id ++
