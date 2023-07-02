@@ -26,7 +26,7 @@
         <nav class="hidden w-full absolute flex flex-col items-center pr-2.5 pt-40 text-[#4a2b10] md:w-auto md:block md:relative md:pt-0">
             <ul class="w-full flex flex-row flex-wrap items-center justify-center m-2.5 md:text-lg md:flex md:gap-4 md:flex-row md:m-0">
                 <li class="flex justify-end items-center mb-0 mr-10">
-                    <a href="index.html" class=" lg:hover:border-[#7a5f37] lg:hover:border-b-2">Home</a>
+                    <a href="index.html" class="lg:hover:border-[#7a5f37] lg:hover:border-b-2">Home</a>
                     <img class="w-6 ml-2 md:w-8" src="./assets/icons/thunder.png" alt="thunder icon">
                 </li>
                 <li class="flex items-center">
@@ -36,10 +36,10 @@
             </ul>
         </nav>
         <!-- title-mobile -->
-        <div class="w-2/5 md:hidden">
+        <article class="w-2/5 md:hidden">
             <h1 class="pb-2 px-4 font-bold text-center">Hogwarts Jobs</h1>
             <img src="assets/icons/magic.png" alt="">
-        </div>
+        </article>
         <!-- burger-menu -->
         <figure class="flex relative md:hidden">
             <i id="open-menu-btn" class="fa-solid fa-bars text-[#4a2b10] border-solid border-[#4a2b10] border-2 rounded p-1"></i>
@@ -49,6 +49,7 @@
         <!-- banner-filter  -->
         <section id="banner-filter" class="bg-[#4a2b10] py-5 flex justify-center md:justify-start lg:px-20">
             <div>
+                <!-- select-location -->
                 <select name="filter-location" id="location" class="rounded-md mx-3 font-medium">
                     <option value="" class="font-medium">Location</option>
                     <option value="England" class="font-medium">England</option>
@@ -60,12 +61,14 @@
                     <option value="Magical Creatures Reserve" class="font-medium">Magical Creatures Reserve</option>
                     <option value="Daily Prophet" class="font-medium">Daily Prophet</option>
                 </select>
+                <!-- select-seniority -->
                 <select name="filter-seniotity" id="seniority" class="rounded-md mx-3 font-medium">
                     <option value="" class="font-medium">Seniority</option>
                     <option value="Trainee" class="font-medium">Trainee</option>
                     <option value="Junior" class="font-medium">Junior</option>
                     <option value="Senior" class="font-medium">Senior</option>
                 </select>
+                <!-- select-category -->
                 <select name="filter-category" id="category" class="rounded-md mx-3 font-medium">
                     <option value="">Category</option>
                     <option value="Wizards">Wizards</option>
@@ -79,6 +82,7 @@
                     <option value="Research">Research</option>
                     <option value="Media">Media</option>
                 </select>
+                <!-- btn-search and btn-clear -->
                 <div class="mt-4 flex justify-center md:inline">
                     <button class="text-white py-2 px-3 font-medium bg-yellow-700 rounded-lg mx-3 lg:active:bg-[#17a512]" id="search">
                         <i class="fa-solid fa-magnifying-glass mr-2"></i>
@@ -91,16 +95,12 @@
                 </div>
             </div>
         </section>
-        <!-- slogan -->
-        <section class="hidden">
-            <h2>Unlock the power of talent: connect with exceptional wizards and witches at Hogwarts.</h2>
-        </section>
         <!-- cards-job -->
         <section id="cards" class="flex flex-row flex-wrap justify-evenly gap-2 py-10">
         </section>
         <!-- set time out -->
         <img id="snitch" class="animate-spin w-12 m-auto mb-32" src="https://img.icons8.com/color/48/snitch.png" alt="snitch"/>
-        <!-- new-form -->
+        <!-- form -->
         <form class="hidden flex flex-col my-12 m-auto p-4 border-8 rounded border-[#aa8855] text-xl sm:w-4/5 md:w-3/5 lg:w-4/6" id="form">
             <label class="text-xl font-bold mb-2">Job title</label>
             <input type="text" class="border-2 p-1 mb-4 rounded" id="job-title" placeholder="Job title">
@@ -156,6 +156,7 @@
             <button class="btn-add bg-[#4a2b10] w-[180px] text-white py-1 mb-6 rounded-full font-bold lg:active:bg-[#d8a110]">Add Skill</button>
             <ul id="skills" class="w-full md:flex md:flex-row flex-wrap justify-evenly"></ul>
             <button id="submit" class="text-2xl w-[250px] m-auto mt-4 p-4 font-bold text-white bg-[#006231] rounded" data-id="">Submit</button>
+            <!-- message to validate form -->
             <p class="hidden w-[300px] mt-4 p-2 bg-[#c61c1c] text-center text-sm rounded-full text-white" id="msj">You must complete all the fields of the form</p>
         </form>
         <!-- modal -->

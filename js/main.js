@@ -12,7 +12,7 @@ const showElements = (selectors) => {
         $(selector).classList.remove("hidden")
     }
 }
-// lean container and variables
+// clean container and variables
 const cleanContainer = (selector) => $(selector).innerHTML = ''
 let skills = []
 let isRegistered = false
@@ -160,7 +160,7 @@ const renderJobDetails = (job) => {
                 <li class="ml-6 font-medium rounded bg-[#fcf5e7] mb-3">${skill}</li>
                 `
             }
-            // mejorar edit
+            // edit job
             $(".btn-edit").addEventListener("click", () => {
                 showElements(["#form"])
                 isRegistered = true
@@ -206,7 +206,6 @@ const renderSkills = () => {
         `
         id ++
     }
-
     for (const btn of $$(".btn-delete")) {
         btn.addEventListener("click", () => {
             const skillId = btn.getAttribute("data-id")
@@ -227,7 +226,6 @@ const setFormValues = (job) => {
     $("#job-salary").value = job.salary
     $("#job-long-term").checked = job.long_term
     $("#url-image").value = job.image
-    // mejorar skills
     skills = job.skills
     renderSkills()
 }
@@ -275,7 +273,6 @@ const validateForm = () => {
         $("#form").reset()
     }
 }
-
 // events
 $("#open-menu-btn").addEventListener("click", () => {
     if (!$("#open-menu-btn").classList.contains("hidden")) {
@@ -284,38 +281,37 @@ $("#open-menu-btn").addEventListener("click", () => {
         $("main").classList.toggle("mt-[90px]")
     } 
 })
-
+// create job
 $("#btn-create-job").addEventListener("click", () => {
     hideElements(["#cards"])
     showElements(["#form"])
     isRegistered = false
     renderSkills()
 })
-
+// search
 $("#search").addEventListener("click", () =>{
     const location = $("#location").value
     const seniority = $("#seniority").value
     const category = $("#category").value
     getJobs(location, seniority, category)
 })
-
+// clear
 $("#clear").addEventListener("click", () => {
     $("#location").value = ""
     $("#category").value = ""
     $("#seniority").value = ""
     getJobs()
 })
-
+// add skills
 $(".btn-add").addEventListener("click", () => {
     event.preventDefault()
     addSkill($("#new-skill").value)
 })
-
+// submit
 $("#form").addEventListener("submit", (e) => {
     e.preventDefault()
     validateForm()
 })
-
 // image card - url
 $("#url-image").addEventListener("input", () => {
     $("#image").style.backgroundImage = `url(${$("#url-image").value})`
@@ -333,14 +329,11 @@ $("#seniority").addEventListener("change", () => {
     $("#location").value = ""
     $("#category").value = ""
 })
-
+// delete job
 $("#delete-job").addEventListener("click", () => {
     const id = $("#delete-job").getAttribute("data-id")
     deleteJob(id)
 })
-
-
-
 window.addEventListener("load", () => {
     getJobs()
 })
