@@ -53,18 +53,31 @@
                     <option value="" class="font-medium">Location</option>
                     <option value="England" class="font-medium">England</option>
                     <option value="Diagon Alley" class="font-medium">Diagon Alley</option>
-                    <option value="Hogwarts" class="font-medium">Hogwarts</option>
+                    <option value="Hogwarts School" class="font-medium">Hogwarts School</option>
                     <option value="London" class="font-medium">London</option>
+                    <option value="San Murgo Hospital" class="font-medium">San Murgo Hospital</option>
+                    <option value="Everyone" class="font-medium">Everyone</option>
+                    <option value="Magical Creatures Reserve" class="font-medium">Magical Creatures Reserve</option>
+                    <option value="Daily Prophet" class="font-medium">Daily Prophet</option>
                 </select>
                 <select name="filter-seniotity" id="seniority" class="rounded-md mx-3 font-medium">
                     <option value="" class="font-medium">Seniority</option>
+                    <option value="Trainee" class="font-medium">Trainee</option>
                     <option value="Junior" class="font-medium">Junior</option>
                     <option value="Senior" class="font-medium">Senior</option>
                 </select>
                 <select name="filter-category" id="category" class="rounded-md mx-3 font-medium">
                     <option value="">Category</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
+                    <option value="Wizards">Wizards</option>
+                    <option value="Manufacturers">Manufacturers</option>
+                    <option value="Politics">Politics</option>
+                    <option value="Medicine">Medicine</option>
+                    <option value="Education">Education</option>
+                    <option value="Services">Services</option>
+                    <option value="Magic lawyer">Magic lawyer</option>
+                    <option value="Magic driver">Magic driver</option>
+                    <option value="Research">Research</option>
+                    <option value="Media">Media</option>
                 </select>
                 <div class="mt-4 flex justify-center md:inline">
                     <button class="text-white py-2 px-3 font-medium bg-yellow-700 rounded-lg mx-3 lg:active:bg-[#17a512]" id="search">
@@ -94,11 +107,38 @@
             <label class="text-xl font-bold mb-2">Description</label>
             <input type="text" class="border-2 p-1 mb-4 rounded" id="job-description" placeholder="Description">
             <label class="text-xl font-bold mb-2">Location</label>
-            <input type="text" class="border-2 p-1 mb-4 rounded" id="job-location" placeholder="Location">
+            <select name="filter-location" id="job-location" class="border-2 p-1 mb-4 rounded">
+                <option value="" class="font-medium">Location</option>
+                <option value="England" class="font-medium">England</option>
+                <option value="Diagon Alley" class="font-medium">Diagon Alley</option>
+                <option value="Hogwarts School" class="font-medium">Hogwarts School</option>
+                <option value="London" class="font-medium">London</option>
+                <option value="San Murgo Hospital" class="font-medium">San Murgo Hospital</option>
+                <option value="Everyone" class="font-medium">Everyone</option>
+                <option value="Magical Creatures Reserve" class="font-medium">Magical Creatures Reserve</option>
+                <option value="Daily Prophet" class="font-medium">Daily Prophet</option>
+            </select>
             <label class="text-xl font-bold mb-2">Seniority</label>
-            <input type="text" class="border-2 p-1 mb-4 rounded" id="job-seniority" placeholder="Seniority">
+            <select name="filter-seniotity" id="job-seniority" class="border-2 p-1 mb-4 rounded">
+                <option value="" class="font-medium">Seniority</option>
+                <option value="Trainee" class="font-medium">Trainee</option>
+                <option value="Junior" class="font-medium">Junior</option>
+                <option value="Senior" class="font-medium">Senior</option>
+            </select>
             <label class="text-xl font-bold mb-2">Category</label>
-            <input type="text" class="border-2 p-1 mb-4 rounded" id="job-category" placeholder="Category">
+            <select name="filter-category" id="job-category" class="border-2 p-1 mb-4 rounded">
+                <option value="">Category</option>
+                <option value="Wizards">Wizards</option>
+                <option value="Manufacturers">Manufacturers</option>
+                <option value="Politics">Politics</option>
+                <option value="Medicine">Medicine</option>
+                <option value="Education">Education</option>
+                <option value="Services">Services</option>
+                <option value="Magic lawyer">Magic lawyer</option>
+                <option value="Magic driver">Magic driver</option>
+                <option value="Research">Research</option>
+                <option value="Media">Media</option>
+            </select>
             <label class="text-xl font-bold mb-2">Vacation</label>
             <input type="text" class="border-2 p-1 mb-4 rounded" id="job-vacation" placeholder="Vacation">
             <label class="text-xl font-bold mb-2">Health Ensurance</label>
@@ -116,6 +156,7 @@
             <button class="btn-add bg-[#4a2b10] w-[180px] text-white py-1 mb-6 rounded-full font-bold lg:active:bg-[#d8a110]">Add Skill</button>
             <ul id="skills" class="w-full md:flex md:flex-row flex-wrap justify-evenly"></ul>
             <button id="submit" class="text-2xl w-[250px] m-auto mt-4 p-4 font-bold text-white bg-[#006231] rounded" data-id="">Submit</button>
+            <p class="hidden w-[300px] mt-4 p-2 bg-[#c61c1c] text-center text-sm rounded-full text-white" id="msj">You must complete all the fields of the form</p>
         </form>
         <!-- modal -->
         <section id="modal-delete" class="hidden py-10 bg-white/[0.8]">

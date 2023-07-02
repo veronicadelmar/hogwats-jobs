@@ -17,15 +17,20 @@ const cleanContainer = (selector) => $(selector).innerHTML = ''
 let skills = []
 let isRegistered = false
 // get jobs
-const getJobs = (location = "", category = "", seniority = "") =>{
-    let search = ""
-    search = location != "" ? `?location=${location}` : ""
-    search = category != "" ? `?category=${category}` : "";
-    search = seniority != "" ? `?seniority=${seniority}` : "";
+const getJobs = (location = "", seniority = "", category = "") =>{
+    const search =
+    location !== ""
+      ? `?location=${location}`
+      : category !== ""
+      ? `?category=${category}`
+      : seniority !== ""
+      ? `?seniority=${seniority}`
+      : ""
     fetch(`https://649078f91e6aa71680cb527f.mockapi.io/jobs${search}`)
     .then(res => res.json())
     .then(data => {
         renderJobs(data)
+        console.log(`https://649078f91e6aa71680cb527f.mockapi.io/jobs${search}`)
     })
 }
 // get job
@@ -73,9 +78,9 @@ const renderJobs = (jobs) => {
                 const minDescription = description.slice(0, 70);
                 $("#cards").innerHTML += `
                 <article class="w-screen bg-white mx-10 p-4 border-2 border-[#aa8855] rounded-lg shadow-2xl sm:mb-4 sm:mx-0 sm:w-5/12 lg:w-[30%]">
-                <img src="${image}" alt="${name}"class="hidden sm:flex mb-6 w-60 m-auto rounded">
-                <h3 class="text-4xl font-bold">${name}</h3>
-                <p class="text-xl text-justify mb-8">${minDescription}...</p>
+                <img src="${image}" alt="${name}"class="hidden sm:flex mb-6 w-60 h-60 m-auto rounded">
+                <h3 class="text-2xl font-bold">${name}</h3>
+                <p class="text-lg text-justify mb-8">${minDescription}...</p>
                 <div class=" text-[#fff] mb-4 mt-2 flex flex-wrap gap-4 justify-star">
                     <p class="p-1 px-2 rounded bg-[#c61c1c] inline">${location}</p>
                     <p class="p-1 px-2 rounded bg-[#d8a110] inline">${seniority}</p>
@@ -245,6 +250,31 @@ const saveJob = () => {
             skills: skills
      }
 }
+// validate form
+const validateForm = () => {
+    const name = $("#job-title").value
+    const image = $("#url-image").value
+    const description = $("#job-description").value
+    const location = $("#job-location").value
+    const category = $("#job-category").value
+    const seniority = $("#job-seniority").value
+    const vacation = $("#job-vacation").value
+    const health_ensurance = $("#job-health-ensuranse").value
+    const salary = $("#job-salary").value
+    if (name == "" || image == "" || description == "" || location == "" || category == "" || seniority == "" || vacation == "" || health_ensurance == "" || salary == "" || skills.length < 1){
+        showElements(["#msj"])
+    } else{
+        hideElements(["#msj"])
+        if (isRegistered) {
+            const jobId = $("#submit").getAttribute("data-id")
+            editJob(jobId)
+            hideElements("#form")  
+        } else {
+            registerJobs()        
+        }
+        $("#form").reset()
+    }
+}
 
 // events
 $("#open-menu-btn").addEventListener("click", () => {
@@ -264,9 +294,9 @@ $("#btn-create-job").addEventListener("click", () => {
 
 $("#search").addEventListener("click", () =>{
     const location = $("#location").value
-    const category = $("#category").value
     const seniority = $("#seniority").value
-    getJobs(location, category, seniority)
+    const category = $("#category").value
+    getJobs(location, seniority, category)
 })
 
 $("#clear").addEventListener("click", () => {
@@ -283,15 +313,7 @@ $(".btn-add").addEventListener("click", () => {
 
 $("#form").addEventListener("submit", (e) => {
     e.preventDefault()
-    if (isRegistered) {
-        const jobId = $("#submit").getAttribute("data-id")
-        editJob(jobId)
-        hideElements("#form")
-        
-    } else {
-        registerJobs()        
-    }
-    $("#form").reset()
+    validateForm()
 })
 
 // image card - url
