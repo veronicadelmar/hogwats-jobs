@@ -30,7 +30,6 @@ const getJobs = (location = "", seniority = "", category = "") =>{
     .then(res => res.json())
     .then(data => {
         renderJobs(data)
-        console.log(`https://649078f91e6aa71680cb527f.mockapi.io/jobs${search}`)
     })
 }
 // get job
