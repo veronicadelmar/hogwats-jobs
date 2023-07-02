@@ -69,6 +69,7 @@ const editJob = (jobId) => {
 // all jobs
 const renderJobs = (jobs) => {
     cleanContainer("#cards")
+    hideElements(["#form"])
     showElements(["#snitch"])
     if (jobs) {
         setTimeout(() => {
@@ -283,6 +284,7 @@ $("#open-menu-btn").addEventListener("click", () => {
 // create job
 $("#btn-create-job").addEventListener("click", () => {
     hideElements(["#cards"])
+    hideElements(["#banner-filter"])
     showElements(["#form"])
     isRegistered = false
     renderSkills()
